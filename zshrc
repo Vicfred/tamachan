@@ -18,6 +18,9 @@ alias such=git
 alias very=git
 alias wow="git status"
 
+# Terminal fix.
+export TERM="xterm-256color"
+
 # LS_COLORS
 # https://github.com/trapd00r/LS_COLORS
 . "$HOME/.local/share/lscolors.sh"
@@ -39,4 +42,3 @@ export HISTSIZE=1000
 export SAVEHIST=1000
 
 fortune -cas
-
