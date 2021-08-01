@@ -116,7 +116,6 @@ let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 set term=xterm-256color
 set termguicolors
 let g:sonokai_style = 'andromeda'
-let g:airline_theme = 'sonokai'
 let g:sonokai_diagnostic_line_highlight = 1
 colorscheme sonokai
 
