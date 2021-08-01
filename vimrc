@@ -24,6 +24,7 @@ set backup                       " Be safe.
 set undofile                     " Saves undo history across sessions.
 set wildmenu                     " Enhanced completion.
 set wildmode=list:longest,full   " Better completion.
+set wildcharm=<C-z>              " Trigger wildmenu key in a macro.
 
 " Put all temporary files under the same directory.
 set backupdir   =$HOME/.vim/files/backup/
@@ -80,6 +81,10 @@ inoremap . .<C-g>u
 " Jumplist mutations.
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+
+" Manage buffers in wildmenu.
+nnoremap <leader>b :confirm buffer <C-z>
+nnoremap <leader>e :confirm edit <C-z>
 
 " Function keys are unmapped by default.
 nnoremap <F1> :FormatCode<CR>
