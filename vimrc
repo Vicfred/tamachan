@@ -27,6 +27,13 @@ set wildmode=list:longest,full   " Better completion.
 set wildcharm=<C-z>              " Trigger wildmenu key in a macro.
 
 " Put all temporary files under the same directory.
+if !isdirectory($HOME.'/.vim/files') && exists('*mkdir')
+  call mkdir($HOME.'/.vim/files')
+  call mkdir($HOME.'/.vim/files/backup')
+  call mkdir($HOME.'/.vim/files/swap')
+  call mkdir($HOME.'/.vim/files/undo')
+  call mkdir($HOME.'/.vim/files/info')
+endif
 set backupdir   =$HOME/.vim/files/backup/
 set backupext   =-vimbackup
 set backupskip  =
