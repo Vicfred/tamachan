@@ -126,8 +126,6 @@ let g:sonokai_style = 'andromeda'
 let g:sonokai_diagnostic_line_highlight = 1
 colorscheme sonokai
 
-autocmd VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-autocmd VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 autocmd VimEnter * echo "Hola Vicfred :)"
 
 let g:hardtime_default_on = 1
