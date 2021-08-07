@@ -1,3 +1,4 @@
+# vim: syntax=vim
 # if dead keys are not working emerge x11-apps/setxkbmap
 # xim, then ibus then @im=ibus make ibus work on firefox,
 # chrome, telegram and the terminal.
