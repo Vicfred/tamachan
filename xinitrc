@@ -12,8 +12,8 @@ numlockx &
 /home/vicfred/.misato/wallpaper-changer.sh &
 setxkbmap -option compose:ralt -option caps:swapescape
 
-exec awesome
-
 #if [ -s ~/.Xmodmap ]; then
 #    xmodmap ~/.Xmodmap
 #fi
+#
+exec awesome
