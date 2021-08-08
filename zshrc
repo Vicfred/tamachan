@@ -38,8 +38,8 @@ export LESS=-r
 export GROFF_NO_SGR=1 # <---- GENTOO FIX
 
 # History.
-export HISTSIZE=1000
-export SAVEHIST=1000
+export HISTSIZE=98765
+export SAVEHIST=98765
 
-fortune -cas
-
+set -o vi
+# precmd() { eval "fortune" }
