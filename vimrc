@@ -120,7 +120,8 @@ runtime cocrc
 " Terminal fix 24-bit.
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
-set term=xterm-256color
+
+" set term=xterm-256color
 set termguicolors
 let g:sonokai_style = 'andromeda'
 let g:sonokai_diagnostic_line_highlight = 1

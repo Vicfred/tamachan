@@ -43,3 +43,5 @@ export SAVEHIST=98765
 
 set -o vi
 # precmd() { eval "fortune" }
+
+alias vim=nvim
