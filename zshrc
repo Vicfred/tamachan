@@ -41,6 +41,9 @@ export GROFF_NO_SGR=1 # <---- GENTOO FIX
 export HISTSIZE=98765
 export SAVEHIST=98765
 
+# Wait for multicharacter sequences.
+KEYTIMEOUT=19
+
 set -o vi
 # precmd() { eval "fortune" }
 
