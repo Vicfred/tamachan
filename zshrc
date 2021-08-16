@@ -9,7 +9,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
-export EDITOR="vim"
+export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 

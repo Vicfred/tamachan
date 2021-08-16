@@ -39,7 +39,11 @@ set backupext   =-vimbackup
 set backupskip  =
 set directory   =$HOME/.vim/files/swap//
 set undodir     =$HOME/.vim/files/undo/
-set viminfo     ='100,n$HOME/.vim/files/info/viminfo
+if has('nvim')
+    set viminfo     ='1000,n$HOME/.vim/files/info/nviminfo
+else
+    set viminfo     ='1000,n$HOME/.vim/files/info/viminfo
+endif
 
 " Show non-printable characters.
 set list
