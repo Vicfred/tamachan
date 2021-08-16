@@ -1,4 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
+plugins=(ssh-agent)
 
 ZSH_THEME="consolata"
 
@@ -7,7 +8,6 @@ DISABLE_UPDATE_PROMPT="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 source $ZSH/oh-my-zsh.sh
-plugins=(ssh-agent)
 
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
