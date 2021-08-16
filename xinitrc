@@ -2,19 +2,31 @@
 # if dead keys are not working emerge x11-apps/setxkbmap
 # xim, then ibus then @im=ibus make ibus work on firefox,
 # chrome, telegram and the terminal.
-export GTK_IM_MODULE="xim"
-export QT_IM_MODULE="ibus"
-export XMODIFIERS="@im=ibus"
-ibus-daemon -d -x -r -n awesome
-
-xscreensaver -no-splash &
-xset r off
-numlockx &
-/home/vicfred/.misato/wallpaper-changer.sh &
-setxkbmap -option compose:ralt -option caps:swapescape
-
+if [ -x "$(command -v ibus-daemon)" ]; then
+    export GTK_IM_MODULE="xim"
+    export QT_IM_MODULE="ibus"
+    export XMODIFIERS="@im=ibus"
+    ibus-daemon -d -x -r -n awesome
+fi
+if [ -x "$(command -v xscreensaver)" ]; then
+    xscreensaver -no-splash &
+fi
+if [ -x "$(command -v xset)" ]; then
+    xset r off
+fi
+if [ -x "$(command -v numlockx)" ]; then
+    numlockx &
+fi
+if [ -x "$(command -v setxkbmap)" ]; then
+    setxkbmap -option compose:ralt -option caps:swapescape
+fi
+if [ -x $HOME/.misato/wallpaper-changer.sh ]
+    /home/vicfred/.misato/wallpaper-changer.sh &
+fi
 #if [ -s ~/.Xmodmap ]; then
 #    xmodmap ~/.Xmodmap
 #fi
 #
-exec awesome
+if [ -x "$(command -v awesome)" ]; then
+    exec awesome
+if
