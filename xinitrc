@@ -20,7 +20,7 @@ fi
 if [ -x "$(command -v setxkbmap)" ]; then
     setxkbmap -option compose:ralt -option caps:swapescape
 fi
-if [ -x $HOME/.misato/wallpaper-changer.sh ]
+if [ -x /home/vicfred/.misato/wallpaper-changer.sh ]; then
     /home/vicfred/.misato/wallpaper-changer.sh &
 fi
 #if [ -s ~/.Xmodmap ]; then
@@ -29,4 +29,4 @@ fi
 #
 if [ -x "$(command -v awesome)" ]; then
     exec awesome
-if
+fi
