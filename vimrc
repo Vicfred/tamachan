@@ -4,8 +4,8 @@ set ffs=unix                     " Unix line endings.
 set encoding=utf-8               " Unicode.
 set scrolloff=3                  " Always show 3 lines of context.
 set ttyfast lazyredraw           " Make drawing fast.
-set timeoutlen=53                " Wait for commands.
-set ttimeoutlen=997              " Wait for keys.
+set timeoutlen=23                " Wait for commands.
+set ttimeoutlen=251              " Wait for keys.
 set backspace=indent,eol,start   " Sane backspace.
 set visualbell t_vb=             " Disable bells.
 set hidden                       " Allow buffer backgrounding.
