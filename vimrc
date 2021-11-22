@@ -4,8 +4,8 @@ set ffs=unix                     " Unix line endings.
 set encoding=utf-8               " Unicode.
 set scrolloff=3                  " Always show 3 lines of context.
 set ttyfast lazyredraw           " Make drawing fast.
-set timeoutlen=23                " Wait for commands.
-set ttimeoutlen=251              " Wait for keys.
+set timeoutlen=227               " Wait for commands.
+set ttimeoutlen=13              " Wait for keys.
 set backspace=indent,eol,start   " Sane backspace.
 set visualbell t_vb=             " Disable bells.
 set hidden                       " Allow buffer backgrounding.
@@ -32,16 +32,16 @@ set wildcharm=<C-z>              " Trigger wildmenu key in a macro.
 if !isdirectory($HOME.'/.vim/files') && exists('*mkdir')
   call mkdir($HOME.'/.vim/files')
 endif
-if !isdirectory($HOME.'/.vim/files') && exists('*mkdir')
+if isdirectory($HOME.'/.vim/files') && !isdirectory($HOME.'/.vim/files/backup') && exists('*mkdir')
   call mkdir($HOME.'/.vim/files/backup')
 endif
-if !isdirectory($HOME.'/.vim/files') && exists('*mkdir')
+if isdirectory($HOME.'/.vim/files') && !isdirectory($HOME.'/.vim/files/swap') && exists('*mkdir')
   call mkdir($HOME.'/.vim/files/swap')
 endif
-if !isdirectory($HOME.'/.vim/files') && exists('*mkdir')
+if isdirectory($HOME.'/.vim/files') && !isdirectory($HOME.'/.vim/files/undo') && exists('*mkdir')
   call mkdir($HOME.'/.vim/files/undo')
 endif
-if !isdirectory($HOME.'/.vim/files') && exists('*mkdir')
+if isdirectory($HOME.'/.vim/files') && !isdirectory($HOME.'/.vim/files/info') && exists('*mkdir')
   call mkdir($HOME.'/.vim/files/info')
 endif
 set backupdir   =$HOME/.vim/files/backup/
