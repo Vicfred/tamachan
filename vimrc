@@ -13,8 +13,8 @@ set showmatch                    " Show matching bracket.
 set number relativenumber        " Hybrid line numbers.
 set cursorline                   " Highlight the current line.
 set expandtab                    " Use spaces instead of tab.
-set tabstop=4                    " Spaces to use per tab.
-set shiftwidth=4                 " Spaces to use per indent.
+set tabstop=2                    " Spaces to use per tab.
+set shiftwidth=2                 " Spaces to use per indent.
 set cindent                      " Automatic indentation.
 set ignorecase                   " Ignore case when searching.
 set smartcase                    " Don't ignore it when it matters.
