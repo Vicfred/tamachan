@@ -10,7 +10,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
-export EDITOR="nvim"
+export EDITOR="vim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
@@ -20,11 +20,11 @@ alias very=git
 alias wow="git status"
 
 # Terminal fix.
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
 
 # LS_COLORS
 # https://github.com/trapd00r/LS_COLORS
-. "$HOME/.local/share/lscolors.sh"
+# . "$HOME/.local/share/lscolors.sh"
 
 # Color man pages.
 export PAGER=less
@@ -47,5 +47,3 @@ KEYTIMEOUT=19
 
 set -o vi
 # precmd() { eval "fortune" }
-
-alias vim=nvim
