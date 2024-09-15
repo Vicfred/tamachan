@@ -15,6 +15,14 @@ if [ -x "$(command -v numlockx)" ]; then
     numlockx &
 fi
 
+#if [ -x "$(command -v nm-applet)"]; then
+  nm-applet &
+#fi
+
+#if [-x "$(command -v blueman-applet)"]; then
+  blueman-applet &
+#fi
+
 # need to install setxkbmap
 # DEPRECATED:
 # Configure using /etc/X11/xorg.conf.d/00-keyboard.conf
