@@ -114,10 +114,10 @@ nnoremap <F3> :let @+ = expand('%:t')<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
 " Copy visually selected text to system clipboard
-vnoremap <leader>y "+y
+vnoremap <leader>y "+y:let @* = @+<CR>
 
 " Copy current line to clipboard in normal mode
-nnoremap <leader>yy "+yy
+nnoremap <leader>yy "+yy:let @* = @+<CR>
 
 " Paste from system clipboard
 nnoremap <leader>p "+p
