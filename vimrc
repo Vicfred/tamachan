@@ -113,6 +113,16 @@ nnoremap <F2> :silent execute 'w !xclip -selection clipboard' <Bar> redraw!<CR>
 nnoremap <F3> :let @+ = expand('%:t')<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
+" Copy visually selected text to system clipboard
+vnoremap <leader>y "+y
+
+" Copy current line to clipboard in normal mode
+nnoremap <leader>yy "+yy
+
+" Paste from system clipboard
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
