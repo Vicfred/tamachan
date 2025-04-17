@@ -109,6 +109,7 @@ nnoremap <leader>e :confirm edit <C-z>
 
 " Function keys are unmapped by default.
 nnoremap <F1> :FormatCode<CR>
+nnoremap <F2> :w !xclip -selection clipboard<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
 " https://github.com/junegunn/vim-plug
