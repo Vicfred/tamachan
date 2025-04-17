@@ -110,7 +110,7 @@ nnoremap <leader>e :confirm edit <C-z>
 " Function keys are unmapped by default.
 nnoremap <F1> :FormatCode<CR>
 nnoremap <F2> :silent execute 'w !xclip -selection clipboard' <Bar> redraw!<CR>
-nnoremap <F3> :let @+ = expand('%:t')<CR>
+nnoremap <F3> :let @+ = expand('%:t') \| let @* = @+<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
 " Copy visually selected text to system clipboard
