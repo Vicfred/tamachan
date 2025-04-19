@@ -141,7 +141,7 @@ call plug#end()
 call glaive#Install()
 
 " Load coc configuration.
-runtime cocrc
+runtime cocrc.vim
 
 " Terminal fix 24-bit.
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
