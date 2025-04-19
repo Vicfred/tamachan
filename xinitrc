@@ -15,13 +15,13 @@ if [ -x "$(command -v numlockx)" ]; then
     numlockx &
 fi
 
-#if [ -x "$(command -v nm-applet)"]; then
-  nm-applet &
-#fi
+if [ -x "$(command -v nm-applet)" ]; then
+    nm-applet &
+fi
 
-#if [-x "$(command -v blueman-applet)"]; then
-  blueman-applet &
-#fi
+if [ -x "$(command -v blueman-applet)" ]; then
+    blueman-applet &
+fi
 
 # need to install setxkbmap
 # DEPRECATED:
