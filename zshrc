@@ -23,10 +23,7 @@ alias wow="git status"
 #export TERM="xterm-256color"
 
 # https://github.com/trapd00r/LS_COLORS
-# TODO: modify the file in the repo to generate
-# them using `make` instead of hardcoding in
-# lscolor.sh
-# I have my own lscolors.sh
+# https://github.com/Vicfred/LS_COLORS
 # manually modified, included in the repo.
 . "$HOME/.local/share/lscolors.sh"
 
