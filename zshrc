@@ -22,9 +22,9 @@ alias wow="git status"
 # Terminal fix.
 #export TERM="xterm-256color"
 
-# LS_COLORS
 # https://github.com/trapd00r/LS_COLORS
-# . "$HOME/.local/share/lscolors.sh"
+# I have my own lscolors.sh
+. "$HOME/.local/share/lscolors.sh"
 
 # Color man pages.
 export PAGER=less
@@ -47,3 +47,20 @@ KEYTIMEOUT=19
 
 set -o vi
 # precmd() { eval "fortune" }
+
+# Useful for cleaning disks.
+alias ducks='du -hcks -- * | sort -rn | head'
+
+# change `make` default behaviour for C++.
+export CXXFLAGS="-std=c++23 -O0 -ggdb3 -Wall -Wextra -Wpedantic -fsanitize=address,undefined"
+#export CPPFLAGS="-I/path/to/include"
+export CXX="clang++"
+
+# Add local installed binaries to the path.
+export PATH=$HOME/.local/bin:$PATH
+
+# https://github.com/dom96/choosenim
+export PATH=$HOME/.nimble/bin:$PATH
+
+# https://www.haskell.org/ghcup/
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
