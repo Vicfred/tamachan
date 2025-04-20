@@ -123,6 +123,9 @@ nnoremap <leader>yy "+yy:let @* = @+<CR>
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
+" Saves and stages the current buffer (equivalent to git add %)
+nnoremap <leader>ga :Gwrite<CR>
+
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
