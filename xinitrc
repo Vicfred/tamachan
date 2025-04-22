@@ -25,10 +25,17 @@ fi
 
 # need to install setxkbmap
 # DEPRECATED:
-# Configure using /etc/X11/xorg.conf.d/00-keyboard.conf
+# Configure using /etc/X11/xorg.conf.d/40-libinput.conf
 # if [ -x "$(command -v setxkbmap)" ]; then
 # setxkbmap -option compose:ralt -option caps:swapescape
 # fi
+
+# Setting this on /etc/X11/xorg.conf.d/
+# is not working. Set it here.
+# Ideally it should be on that directory
+# in server flags with high priority like
+# 10-serverflags.conf
+xset r rate 9000 25
 
 # Wallpaper changer
 if [ -x /home/vicfred/.misato/wallpaper-changer.sh ]; then
