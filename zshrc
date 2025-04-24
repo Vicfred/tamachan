@@ -50,6 +50,7 @@ set -o vi
 # precmd() { eval "fortune" }
 
 # Useful for cleaning disks.
+# Run in the directory to inspect.
 ducks() {
   du -hsx *    |   # show size of each item in cwd, human-readable, stay on same filesystem
   sort -rh     |   # sort by size (reverse, human-numeric)
