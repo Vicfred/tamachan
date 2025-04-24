@@ -52,9 +52,12 @@ set -o vi
 # Useful for cleaning disks.
 # Run in the directory to inspect.
 ducks() {
-  du -hsx *    |   # show size of each item in cwd, human-readable, stay on same filesystem
-  sort -rh     |   # sort by size (reverse, human-numeric)
-  head -10         # top 10
+  local n=${1:-10}
+  setopt GLOB_DOTS
+  du -hsx -- *    \
+    | sort -rh     \
+    | head -n "$n"
+  unsetopt GLOB_DOTS
 }
 
 # change `make` default behaviour for C++.
