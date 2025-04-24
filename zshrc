@@ -50,7 +50,11 @@ set -o vi
 # precmd() { eval "fortune" }
 
 # Useful for cleaning disks.
-alias ducks='du -hcks -- * | sort -rn | head'
+ducks() {
+  du -hsx *    |   # show size of each item in cwd, human-readable, stay on same filesystem
+  sort -rh     |   # sort by size (reverse, human-numeric)
+  head -10         # top 10
+}
 
 # change `make` default behaviour for C++.
 export CXXFLAGS="-std=c++23 -O0 -ggdb3 -Wall -Wextra -Wpedantic -fsanitize=address,undefined"
