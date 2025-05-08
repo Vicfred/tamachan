@@ -61,9 +61,38 @@ ducks() {
 }
 
 # change `make` default behaviour for C++.
-export CXXFLAGS="-std=c++23 -O0 -ggdb3 -Wall -Wextra -Wpedantic -fsanitize=address,undefined"
-#export CPPFLAGS="-I/path/to/include"
 export CXX="clang++"
+# — C++ compiler flags —
+#   standard, optimizations, debug info, warnings, sanitizers, analysis, fuzzing
+# -std=c++23                    Use the C++23 standard
+# -O0                           Disable optimizations (for easier stepping)
+# -ggdb3                        Emit full GDB debug info (including macro defs)
+# -Wall -Wextra                 Enable most warning checks
+# -Wpedantic                    Enforce strict ISO C++ compliance
+# -Wconversion                  Warn on implicit conversions that may alter values
+# -Wsign-conversion             Warn on signed/unsigned conversions that may change sign
+# -fno-omit-frame-pointer       Keep frame pointers for accurate backtraces
+# -fno-inline                   Disable function inlining to preserve call stacks
+# -fsanitize=address,undefined  Catch memory- and undefined-behavior bugs
+# -fsanitize=leak               Detect memory leaks on program exit
+# -fsanitize=fuzzer             Build in-process fuzzer harness (libFuzzer)
+# -fanalyzer                    Run GCC’s static analyzer to catch bugs at compile time
+export CXXFLAGS="\
+-std=c++23 \
+-O0 \
+-ggdb3 \
+-Wall \
+-Wextra \
+-Wpedantic \
+-Wconversion \
+-Wsign-conversion \
+-fno-omit-frame-pointer \
+-fno-inline \
+-fsanitize=address,undefined \
+-fsanitize=leak \
+-fsanitize=fuzzer \
+-fanalyzer"
+#export CPPFLAGS="-I/path/to/include"
 
 # Add local installed binaries to the path.
 export PATH=$HOME/.local/bin:$PATH
