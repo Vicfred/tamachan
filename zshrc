@@ -63,7 +63,7 @@ ducks() {
 # change `make` default behaviour for C++.
 export CXX="clang++"
 # — C++ compiler flags —
-#   standard, optimizations, debug info, warnings, sanitizers, analysis, fuzzing
+#   standard, optimizations, debug info, warnings, sanitizers, analysis
 # -std=c++23                    Use the C++23 standard
 # -O0                           Disable optimizations (for easier stepping)
 # -ggdb3                        Emit full GDB debug info (including macro defs)
@@ -75,7 +75,6 @@ export CXX="clang++"
 # -fno-inline                   Disable function inlining to preserve call stacks
 # -fsanitize=address,undefined  Catch memory- and undefined-behavior bugs
 # -fsanitize=leak               Detect memory leaks on program exit
-# -fsanitize=fuzzer             Build in-process fuzzer harness (libFuzzer)
 export CXXFLAGS="\
 -std=c++23 \
 -O0 \
@@ -88,8 +87,7 @@ export CXXFLAGS="\
 -fno-omit-frame-pointer \
 -fno-inline \
 -fsanitize=address,undefined \
--fsanitize=leak \
--fsanitize=fuzzer"
+-fsanitize=leak"
 #export CPPFLAGS="-I/path/to/include"
 
 # Add local installed binaries to the path.
