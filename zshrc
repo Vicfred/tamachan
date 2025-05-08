@@ -76,7 +76,6 @@ export CXX="clang++"
 # -fsanitize=address,undefined  Catch memory- and undefined-behavior bugs
 # -fsanitize=leak               Detect memory leaks on program exit
 # -fsanitize=fuzzer             Build in-process fuzzer harness (libFuzzer)
-# -fanalyzer                    Run GCC’s static analyzer to catch bugs at compile time
 export CXXFLAGS="\
 -std=c++23 \
 -O0 \
@@ -90,8 +89,7 @@ export CXXFLAGS="\
 -fno-inline \
 -fsanitize=address,undefined \
 -fsanitize=leak \
--fsanitize=fuzzer \
--fanalyzer"
+-fsanitize=fuzzer"
 #export CPPFLAGS="-I/path/to/include"
 
 # Add local installed binaries to the path.
