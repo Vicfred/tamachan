@@ -246,6 +246,23 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
     awful.key({ }, "Print", function () awful.util.spawn("/home/vicfred/.misato/ss.sh") end),
     awful.key({ }, "F12", function () awful.util.spawn("/home/vicfred/.misato/lock.sh") end),
+    -- Volume control
+    awful.key({}, "XF86AudioRaiseVolume", function ()
+        awful.spawn("amixer set Master 20%+")
+    end, {description = "volume up", group = "media"}),
+    awful.key({}, "XF86AudioLowerVolume", function ()
+        awful.spawn("amixer set Master 20%-")
+    end, {description = "volume down", group = "media"}),
+    awful.key({}, "XF86AudioMute", function ()
+        awful.spawn("amixer set Master toggle")
+    end, {description = "toggle mute", group = "media"}),
+    -- Brightness control
+    awful.key({}, "XF86MonBrightnessUp", function ()
+        awful.spawn("sudo brightnessctl set 25%+")
+    end, {description = "brightness up", group = "media"}),
+    awful.key({}, "XF86MonBrightnessDown", function ()
+        awful.spawn("sudo brightnessctl set 25%-")
+    end, {description = "brightness down", group = "media"}),
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
