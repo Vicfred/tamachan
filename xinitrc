@@ -4,9 +4,9 @@
 # chrome, telegram and the terminal.
 # CJK input
 if [ -x "$(command -v ibus-daemon)" ]; then
-    export GTK_IM_MODULE="xim"
-    export QT_IM_MODULE="ibus"
-    export XMODIFIERS="@im=ibus"
+    export GTK_IM_MODULE=ibus
+    export QT_IM_MODULE=ibus
+    export XMODIFIERS=@im=ibus
     ibus-daemon -d -x -r -n awesome
 fi
 
