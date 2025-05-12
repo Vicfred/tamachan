@@ -119,6 +119,67 @@ euclock = wibox.widget.textclock(" EU: %T ", 0.1, "Europe/Berlin")
 twclock = wibox.widget.textclock(" TW: %T ", 0.1, "Asia/Taipei")
 jpclock = wibox.widget.textclock(" JP: %T ", 0.1, "Asia/Tokyo")
 
+-- Create a textbox widget
+local volume_widget = wibox.widget {
+    widget = wibox.widget.textbox,
+    align  = "center",
+    valign = "center"
+}
+
+local function update_volume()
+    awful.spawn.easy_async(
+        'bash -c "pactl get-sink-volume @DEFAULT_SINK@ | awk \'{print $5}\' | head -n1"',
+        function(out)
+            local vol = out:match("(%d?%d?%d%%)")
+            volume_widget:set_text(vol and "Vol: "..vol or "Vol: N/A")
+        end
+    )
+end
+
+update_volume()
+
+awful.spawn.with_line_callback("pactl subscribe", {
+    stdout = function(line)
+        if line:match("Event 'change' on sink") then
+            update_volume()
+        end
+    end
+})
+
+local brightness_widget = wibox.widget {
+    widget = wibox.widget.textbox
+}
+
+local function update_brightness()
+    -- This works if your backlight is under /sys/class/backlight/*;
+    -- adjust the glob if you know the exact directory (e.g. intel_backlight).
+    local cmd = [[bash -c '
+      b=$(cat /sys/class/backlight/*/brightness)
+      m=$(cat /sys/class/backlight/*/max_brightness)
+      printf "%d\n" $((b * 100 / m))
+    ']]
+    awful.spawn.easy_async(cmd, function(stdout)
+        local pct = stdout:match("(%d+)")
+        brightness_widget:set_text(pct and ("Bri: "..pct.."%") or "Bri: N/A")
+    end)
+end
+
+update_brightness()
+
+awful.widget.watch(
+    [[bash -c '
+      b=$(cat /sys/class/backlight/*/brightness)
+      m=$(cat /sys/class/backlight/*/max_brightness)
+      printf "%d\n" $((b * 100 / m))
+    ']],
+    0.1,
+    function(widget, stdout)
+        local pct = stdout:match("(%d+)")
+        widget:set_text(pct and ("Bri: "..pct.."%") or "Bri: N/A")
+    end,
+    brightness_widget
+)
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -222,12 +283,14 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
-	    ptclock,
-	    mxclock,
-	    arclock,
-	    euclock,
-	    twclock,
-	    jpclock,
+            ptclock,
+            mxclock,
+            arclock,
+            euclock,
+            twclock,
+            jpclock,
+            volume_widget,
+            brightness_widget,
             s.mylayoutbox,
         },
     }
