@@ -248,10 +248,10 @@ globalkeys = gears.table.join(
     awful.key({ }, "F12", function () awful.util.spawn("/home/vicfred/.misato/lock.sh") end),
     -- Volume control
     awful.key({}, "XF86AudioRaiseVolume", function ()
-        awful.spawn("amixer set Master 20%+")
+        awful.spawn("amixer set Master 10%+")
     end, {description = "volume up", group = "media"}),
     awful.key({}, "XF86AudioLowerVolume", function ()
-        awful.spawn("amixer set Master 20%-")
+        awful.spawn("amixer set Master 10%-")
     end, {description = "volume down", group = "media"}),
     awful.key({}, "XF86AudioMute", function ()
         awful.spawn("amixer set Master toggle")
@@ -263,6 +263,18 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86MonBrightnessDown", function ()
         awful.spawn("sudo brightnessctl set 25%-")
     end, {description = "brightness down", group = "media"}),
+    -- toggle PulseAudio mic mute when you press the XF86AudioMicMute key
+    awful.key(
+        {}, "XF86AudioMicMute",
+        function()
+            awful.spawn.with_shell("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+            awful.spawn.with_shell([[
+                state=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
+                notify-send "Microphone" "Muted: $state"
+            ]])
+        end,
+        {description = "toggle microphone mute", group = "media"}
+    ),
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
