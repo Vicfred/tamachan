@@ -46,6 +46,12 @@ fi
 #    xmodmap ~/.Xmodmap
 #fi
 
+# switch monitors left and right
+# get names with xrandr --query
+if [ -x "$(command -v xrandr)" ]; then
+    xrandr --output HDMI-A-0 --auto --primary --output DisplayPort-0 --auto --right-of HDMI-A-0
+fi
+
 # Start window manager
 if [ -x "$(command -v awesome)" ]; then
     exec awesome
