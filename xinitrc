@@ -26,9 +26,9 @@ fi
 # need to install setxkbmap
 # DEPRECATED:
 # Configure using /etc/X11/xorg.conf.d/40-libinput.conf
-# if [ -x "$(command -v setxkbmap)" ]; then
-# setxkbmap -option compose:ralt -option caps:swapescape
-# fi
+if [ -x "$(command -v setxkbmap)" ]; then
+setxkbmap -option compose:ralt -option caps:swapescape
+fi
 
 # Setting this on /etc/X11/xorg.conf.d/
 # is not working. Set it here.
