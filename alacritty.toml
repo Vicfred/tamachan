@@ -28,8 +28,19 @@ foreground = "#e7e7e1"
 #[env]
 #TERM = "xterm-256color"
 
+[font]
+size = 12
+
+[font.bold]
+family = "AdwaitaMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "AdwaitaMono Nerd Font"
+style = "Italic"
+
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "AdwaitaMono Nerd Font"
 style = "Regular"
 
 [[keyboard.bindings]]
@@ -135,7 +146,7 @@ decorations = "full"
 
 [window.dimensions]
 columns = 100
-lines = 22
+lines = 30
 
 [window.padding]
 x = 0
