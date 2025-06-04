@@ -27,7 +27,7 @@ fi
 # DEPRECATED:
 # Configure using /etc/X11/xorg.conf.d/40-libinput.conf
 if [ -x "$(command -v setxkbmap)" ]; then
-setxkbmap -option compose:ralt -option caps:swapescape
+    setxkbmap -option compose:ralt -option caps:swapescape
 fi
 
 # Setting this on /etc/X11/xorg.conf.d/
