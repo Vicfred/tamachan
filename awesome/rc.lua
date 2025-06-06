@@ -195,6 +195,19 @@ awful.widget.watch(
     cpu_temp_widget
 )
 
+-- Create a textbox widget
+gpu_temp_widget = wibox.widget.textbox()
+
+-- Register the widget, using the sensors output
+awful.widget.watch(
+    'bash -c "sensors | grep -A 5 amdgpu-pci | grep edge | awk \'{print \\$2}\'"',
+    1,
+    function(widget, stdout)
+        widget:set_text("|GPU: " .. stdout:gsub("\n", "") )
+    end,
+    gpu_temp_widget
+)
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -306,6 +319,7 @@ awful.screen.connect_for_each_screen(function(s)
             jpclock,
             volume_widget,
             cpu_temp_widget,
+            gpu_temp_widget,
             brightness_widget,
             s.mylayoutbox,
         },
