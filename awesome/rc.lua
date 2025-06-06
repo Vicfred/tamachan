@@ -177,7 +177,7 @@ awful.widget.watch(
     0.1,
     function(widget, stdout)
         local pct = stdout:match("(%d+)")
-        widget:set_text(pct and ("Bri: "..pct.."%") or "Bri: N/A")
+        widget:set_text(pct and ("|Bri: "..pct.."%") or "|Bri: N/A")
     end,
     brightness_widget
 )
