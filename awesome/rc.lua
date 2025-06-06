@@ -17,6 +17,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- Vicious for temperature, depends on lm-sensors
+local vicious = require("vicious")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -131,7 +133,7 @@ local function update_volume()
         'bash -c "pactl get-sink-volume @DEFAULT_SINK@ | awk \'{print $5}\' | head -n1"',
         function(out)
             local vol = out:match("(%d?%d?%d%%)")
-            volume_widget:set_text(vol and "Vol: "..vol or "Vol: N/A")
+            volume_widget:set_text(vol and "|Vol: "..vol or "|Vol: N/A")
         end
     )
 end
@@ -160,7 +162,7 @@ local function update_brightness()
     ']]
     awful.spawn.easy_async(cmd, function(stdout)
         local pct = stdout:match("(%d+)")
-        brightness_widget:set_text(pct and ("Bri: "..pct.."%") or "Bri: N/A")
+        brightness_widget:set_text(pct and ("|Bri: "..pct.."%") or "|Bri: N/A")
     end)
 end
 
@@ -178,6 +180,19 @@ awful.widget.watch(
         widget:set_text(pct and ("Bri: "..pct.."%") or "Bri: N/A")
     end,
     brightness_widget
+)
+
+-- Create a textbox widget
+cpu_temp_widget = wibox.widget.textbox()
+
+-- Register the widget, using the sensors output
+awful.widget.watch(
+    'bash -c "sensors | grep -m1 Tctl | awk \'{print \\$2}\'"', 
+    1,
+    function(widget, stdout)
+        widget:set_text("|CPU: " .. stdout:gsub("\n", "") )
+    end,
+    cpu_temp_widget
 )
 
 -- Create a wibox for each screen and add it
@@ -290,6 +305,7 @@ awful.screen.connect_for_each_screen(function(s)
             twclock,
             jpclock,
             volume_widget,
+            cpu_temp_widget,
             brightness_widget,
             s.mylayoutbox,
         },
