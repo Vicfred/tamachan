@@ -99,7 +99,7 @@ theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/m
 
 -- theme.wallpaper = themes_path.."default/background.png"
 -- theme.wallpaper = themes_path.."default/background.jpg"
-theme.wallpaper = ".config/awesome/themes/default/background.jpg"
+theme.wallpaper = ".config/awesome/themes/background.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
