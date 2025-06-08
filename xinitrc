@@ -30,6 +30,10 @@ if [ -x "$(command -v setxkbmap)" ]; then
     setxkbmap -option compose:ralt -option caps:swapescape
 fi
 
+if [ -x "$(command -v xsetwacom)" ]; then
+    xsetwacom set "Wacom Intuos S Pen stylus" MapToOutput HDMI-A-0
+fi
+
 # Setting this on /etc/X11/xorg.conf.d/
 # is not working. Set it here.
 # Ideally it should be on that directory
