@@ -315,10 +315,10 @@ awful.screen.connect_for_each_screen(function(s)
             euclock,
             twclock,
             jpclock,
-            volume_widget,
             cpu_temp_widget,
             gpu_temp_widget,
             brightness_widget,
+            volume_widget,
             s.mylayoutbox,
         },
     }
