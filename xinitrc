@@ -30,14 +30,6 @@ if [ -x "$(command -v setxkbmap)" ]; then
     setxkbmap -option compose:ralt -option caps:swapescape
 fi
 
-if [ -x "$(command -v xsetwacom)" ]; then
-    xsetwacom set "Wacom Intuos S Pen stylus" MapToOutput HDMI-A-0
-fi
-  
-if [ -x "$(command -v xsetwacom)" ]; then
-    xrandr --output DisplayPort-0 --mode 1920x1080 --pos 0x0 --output HDMI-A-0 --primary --mode 1920x1080 --pos 1920x0
-fi
-
 # Setting this on /etc/X11/xorg.conf.d/
 # is not working. Set it here.
 # Ideally it should be on that directory
@@ -64,4 +56,3 @@ fi
 if [ -x "$(command -v awesome)" ]; then
     exec awesome
 fi
-

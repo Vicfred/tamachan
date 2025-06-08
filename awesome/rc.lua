@@ -699,3 +699,12 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+local hostname = io.popen("hostname"):read("*l")
+
+if hostname == "magi" then
+  -- Set monitors layout
+  awful.spawn.with_shell("xrandr --output DisplayPort-0 --mode 1920x1080 --pos 0x0 --output HDMI-A-0 --primary --mode 1920x1080 --pos 1920x0")
+  -- Map Wacom stylus to HDMI-A-0 monitor
+  awful.spawn.with_shell('xsetwacom set "Wacom Intuos S Pen stylus" MapToOutput HDMI-A-0')
+end
