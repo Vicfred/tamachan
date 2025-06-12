@@ -98,3 +98,22 @@ export PATH=$HOME/.nimble/bin:$PATH
 
 # https://www.haskell.org/ghcup/
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
+
+# list of quotes
+local QUOTE_FILES=(~/.misato/quotes ~/.misato/nihongo)
+
+print_quote() {
+  # pick one file randomly
+  local file
+  file=$(shuf -n1 -e "${QUOTE_FILES[@]}")
+  # pick one random line (quote) from that file
+  shuf -n1 -- "$file"
+}
+
+print_quote_uniform() {
+  # concatenate them and pick one random line
+  cat "${QUOTE_FILES[@]}" | shuf -n1
+}
+
+# run print_quote after every command finishes
+precmd_functions+=(print_quote_uniform)
