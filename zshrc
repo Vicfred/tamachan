@@ -100,7 +100,7 @@ export PATH=$HOME/.nimble/bin:$PATH
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 # list of quotes
-local QUOTE_FILES=(~/.misato/quotes ~/.misato/nihongo)
+local QUOTE_FILES=(~/.misato/quotes ~/.misato/nihongo ~/.misato/zhuyin)
 
 print_quote() {
   # pick one file randomly
