@@ -10,17 +10,12 @@ shopt -s nullglob nocaseglob
 video_codec="libsvtav1"
 
 # Quality / speed settings:
-crf=18            # AV1 default is 35; lower = better quality
-                  # 18-20 is archival quality
-                  # 22-24 is good for normal videos
-preset=3          # default is 10; lower = slower encoding, better efficiency
-                  # 4 is good enough for normal videos
-                  # 0 is for important videos
+crf=35            # AV1 default is 35; lower = better quality
+preset=6          # default is 10; lower = slower encoding, better efficiency
 
 # Audio settings:
 audio_codec="libopus"
-audio_bitrate="192k"      # 192k is for important audio
-                          # 128 is good enough for normal audio
+audio_bitrate="96k"
 
 # Metadata preservation during encoding:
 metadata_opts=(-map_metadata 0 -movflags use_metadata_tags)
@@ -44,8 +39,25 @@ for video_file in *.{mp4,mkv}; do
   # define output filename
   output_file="$output_dir/${base}.$ext"
 
+  # check if the video is rotated using metadata
+  rotate=$(ffprobe -v error \
+  -select_streams v:0 \
+  -show_entries stream_tags=rotate \
+  -of csv=p=0 "$video_file")
+
+  # scale the video
+  scale="960:540:flags=lanczos"
+
+  if [ -z "$rotate" ]; then
+    echo "No rotation tag present"
+  else
+    echo "Rotated video"
+    scale="-2:960:flags=lanczos"
+  fi
+
   # ── Encode video/audio with FFmpeg (preserving non-rewrite metadata) ────
   ffmpeg -i "$video_file" \
+    -vf "scale=$scale" \
     "${metadata_opts[@]}" \
     -c:v "$video_codec" \
     -crf "$crf" \
@@ -91,8 +103,9 @@ for video_file in *.{mp4,mkv}; do
              "$output_file"
   fi
 
-  printf "Encoded '%s' → '%s'  (vcodec=%s crf=%s preset=%s | acodec=%s bitrate=%s)\n" \
+  printf "Encoded '%s' → '%s'  (scale=%s | vcodec=%s crf=%s preset=%s | acodec=%s bitrate=%s)\n" \
     "$video_file" "$output_file" \
+    "$scale" \
     "$video_codec" "$crf" "$preset" \
     "$audio_codec" "$audio_bitrate"
 done
