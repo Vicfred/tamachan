@@ -48,5 +48,10 @@ fi
 
 # Start window manager
 if [ -x "$(command -v awesome)" ]; then
-    exec awesome
+    exec dbus-run-session -- sh -lc '
+      pipewire &
+      wireplumber &
+      pipewire-pulse &
+      exec awesome
+    '
 fi
