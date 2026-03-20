@@ -349,10 +349,10 @@ globalkeys = gears.table.join(
     end, {description = "toggle mute", group = "media"}),
     -- Brightness control
     awful.key({}, "XF86MonBrightnessUp", function ()
-        awful.spawn("sudo brightnessctl set 25%+")
+        awful.spawn("sudo brightnessctl set 5%+")
     end, {description = "brightness up", group = "media"}),
     awful.key({}, "XF86MonBrightnessDown", function ()
-        awful.spawn("sudo brightnessctl set 25%-")
+        awful.spawn("sudo brightnessctl set 5%-")
     end, {description = "brightness down", group = "media"}),
     -- toggle PulseAudio mic mute when you press the XF86AudioMicMute key
     awful.key(
