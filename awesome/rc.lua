@@ -112,12 +112,11 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 -- mytextclock = wibox.widget.textclock()
-ptclock = wibox.widget.textclock(" Week %V Day %j %A %B %d PT: %T ", 0.1, "America/Los_Angeles")
-mxclock = wibox.widget.textclock(" MX: %T ", 0.1, "Mexico/General")
-arclock = wibox.widget.textclock(" AR: %T ", 0.1, "America/Buenos_Aires")
-euclock = wibox.widget.textclock(" EU: %T ", 0.1, "Europe/Berlin")
-twclock = wibox.widget.textclock(" TW: %T ", 0.1, "Asia/Taipei")
-jpclock = wibox.widget.textclock(" JP: %T ", 0.1, "Asia/Tokyo")
+ptclock = wibox.widget.textclock(" Week %V Day %j %A %B %d MX: %T ", 0.5, "Mexico/General")
+mxclock = wibox.widget.textclock("PT: %H ", 1, "America/Los_Angeles")
+euclock = wibox.widget.textclock("EU: %H ", 1, "Europe/Berlin")
+-- twclock = wibox.widget.textclock("TW: %H ", 0.1, "Asia/Taipei")
+jpclock = wibox.widget.textclock("JP: %H ", 1, "Asia/Tokyo")
 
 -- Create a textbox widget
 local volume_widget = wibox.widget {
