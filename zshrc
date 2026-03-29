@@ -118,3 +118,5 @@ print_quote_uniform() {
 
 # run print_quote after every command finishes
 precmd_functions+=(print_quote_uniform)
+
+source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
