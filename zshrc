@@ -83,6 +83,7 @@ export CXXFLAGS="\
 -Wextra \
 -Wpedantic \
 -Wconversion \
+-Wno-sign-conversion \
 -fno-omit-frame-pointer \
 -fno-inline \
 -fsanitize=address,undefined \
