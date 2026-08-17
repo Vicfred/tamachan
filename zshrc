@@ -84,9 +84,15 @@ export CXXFLAGS="\
 -Wpedantic \
 -Wconversion \
 -Wno-sign-conversion \
+-Wshadow \
+-Wswitch-enum \
+-Wimplicit-fallthrough \
+-Wold-style-cast \
 -fno-omit-frame-pointer \
--fsanitize=address,undefined \
--fno-sanitize-recover=undefined"
+-fsanitize=address,undefined,bounds,integer \
+-fno-sanitize-recover=undefined \
+-D_GLIBCXX_ASSERTIONS \
+-D_GLIBCXX_DEBUG"
 #export CPPFLAGS="-I/path/to/include"
 
 # Add local installed binaries to the path.
