@@ -85,9 +85,8 @@ export CXXFLAGS="\
 -Wconversion \
 -Wno-sign-conversion \
 -fno-omit-frame-pointer \
--fno-inline \
 -fsanitize=address,undefined \
--fsanitize=leak"
+-fno-sanitize-recover=undefined"
 #export CPPFLAGS="-I/path/to/include"
 
 # Add local installed binaries to the path.
