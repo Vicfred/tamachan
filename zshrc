@@ -99,6 +99,8 @@ export PATH=$HOME/.nimble/bin:$PATH
 # https://www.haskell.org/ghcup/
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
+export PATH=$HOME/.cargo/bin:$PATH
+
 # list of quotes
 #local QUOTE_FILES=(~/.misato/quotes ~/.misato/nihongo ~/.misato/zhuyin)
 local QUOTE_FILES=(~/.misato/hsk1_vocabulary_zhuyin.csv ~/.misato/hsk2_vocabulary_zhuyin.csv)
@@ -120,3 +122,5 @@ print_quote_uniform() {
 precmd_functions+=(print_quote_uniform)
 
 source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
+
+alias t='todo.sh -d ~/.todo.cfg'
