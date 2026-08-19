@@ -89,7 +89,8 @@ export CXXFLAGS="\
 -Wimplicit-fallthrough \
 -Wold-style-cast \
 -fno-omit-frame-pointer \
--fsanitize=address,undefined,bounds \
+-fsanitize=address,undefined,bounds,integer \
+-fno-sanitize=unsigned-integer-overflow \
 -fno-sanitize-recover=undefined \
 -D_GLIBCXX_ASSERTIONS \
 -D_GLIBCXX_DEBUG"
