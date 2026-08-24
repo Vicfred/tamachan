@@ -4,8 +4,8 @@ set ffs=unix                     " Unix line endings.
 set encoding=utf-8               " Unicode.
 set scrolloff=3                  " Always show 3 lines of context.
 set lazyredraw                   " Make drawing fast.
-set timeoutlen=500               " Wait for commands.
-set ttimeoutlen=50               " Wait for keys.
+set timeoutlen=500               " Wait for mapped key sequences.
+set ttimeoutlen=50               " Wait for terminal key codes.
 set backspace=indent,eol,start   " Sane backspace.
 set visualbell t_vb=             " Disable bells.
 set hidden                       " Allow buffer backgrounding.
@@ -22,14 +22,14 @@ set nohlsearch                   " Turn off highlighting.
 set shell=sh                     " Vim only needs sh.
 set history=9876                 " Remember a lot.
 set backup                       " Be safe.
-set undofile                     " Saves undo history across sessions.
+set undofile                     " Save undo history across sessions.
 set wildmenu                     " Enhanced completion.
 set wildmode=list:longest,full   " Better completion.
 set wildcharm=<C-z>              " Trigger wildmenu key in a macro.
 set updatetime=300               " Faster CursorHold/LSP updates.
 set signcolumn=yes               " Prevent diagnostic signs shifting text.
 
-" C/C++
+" C/C++.
 augroup cpp_style
   autocmd!
   autocmd FileType c,cpp setlocal colorcolumn=60
@@ -108,17 +108,17 @@ nnoremap <F2> :silent execute 'w !xclip -selection clipboard' <Bar> redraw!<CR>
 nnoremap <F3> :let @+ = expand('%:t') \| let @* = @+<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
-" Copy visually selected text to system clipboard
+" Copy visually selected text to system clipboard.
 vnoremap <leader>y "+y:let @* = @+<CR>
 
-" Copy current line to clipboard in normal mode
+" Copy current line to clipboard in normal mode.
 nnoremap <leader>yy "+yy:let @* = @+<CR>
 
-" Paste from system clipboard
+" Paste from system clipboard.
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
-" Saves and stages the current buffer (equivalent to git add %)
+" Saves and stages the current buffer (equivalent to git add %).
 nnoremap <leader>ga :Gwrite<CR>
 
 " Toggle LSP inlay hints.
