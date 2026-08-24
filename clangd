@@ -1,0 +1,45 @@
+CompileFlags:
+  Add:
+    - -std=c++23
+    - -Wall
+    - -Wextra
+    - -Wpedantic
+    - -Wconversion
+    - -Wno-sign-conversion
+    - -Wshadow
+    - -Wswitch-enum
+    - -Wimplicit-fallthrough
+    - -Wold-style-cast
+    - -D_GLIBCXX_ASSERTIONS
+    - -D_GLIBCXX_DEBUG
+
+Completion:
+  ArgumentLists: Delimiters
+  AllScopes: No
+  HeaderInsertion: IWYU
+  CodePatterns: None
+  MacroFilter: ExactPrefix
+
+Hover:
+  ShowAKA: true
+
+InlayHints:
+  Enabled: true
+  ParameterNames: true
+  DeducedTypes: true
+  DefaultArguments: true
+  BlockEnd: false
+  TypeNameLimit: 40
+
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+  ClangTidy:
+    Add:
+      - bugprone-*
+      - performance-*
+    FastCheckFilter: Strict
+
+Index:
+  Background: Build
+  StandardLibrary: true
