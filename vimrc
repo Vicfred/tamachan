@@ -3,9 +3,9 @@ set nocompatible                 " Vi Improved.
 set ffs=unix                     " Unix line endings.
 set encoding=utf-8               " Unicode.
 set scrolloff=3                  " Always show 3 lines of context.
-set ttyfast lazyredraw           " Make drawing fast.
-set timeoutlen=227               " Wait for commands.
-set ttimeoutlen=13              " Wait for keys.
+set lazyredraw                   " Make drawing fast.
+set timeoutlen=500               " Wait for commands.
+set ttimeoutlen=50               " Wait for keys.
 set backspace=indent,eol,start   " Sane backspace.
 set visualbell t_vb=             " Disable bells.
 set hidden                       " Allow buffer backgrounding.
@@ -15,7 +15,6 @@ set cursorline                   " Highlight the current line.
 set expandtab                    " Use spaces instead of tab.
 set tabstop=2                    " Spaces to use per tab.
 set shiftwidth=2                 " Spaces to use per indent.
-set cindent                      " Automatic indentation.
 set ignorecase                   " Ignore case when searching.
 set smartcase                    " Don't ignore it when it matters.
 set incsearch                    " Search incrementally as I type.
@@ -27,33 +26,32 @@ set undofile                     " Saves undo history across sessions.
 set wildmenu                     " Enhanced completion.
 set wildmode=list:longest,full   " Better completion.
 set wildcharm=<C-z>              " Trigger wildmenu key in a macro.
+set updatetime=300               " Faster CursorHold/LSP updates.
+set signcolumn=yes               " Prevent diagnostic signs shifting text.
+
+" C/C++
+augroup cpp_style
+  autocmd!
+  autocmd FileType c,cpp setlocal colorcolumn=60
+augroup END
+
+" Change leader key to space.
+let mapleader = " "
+nnoremap <Space> <Nop>
 
 " Put all temporary files under the same directory.
-if !isdirectory($HOME.'/.vim/files') && exists('*mkdir')
-  call mkdir($HOME.'/.vim/files')
-endif
-if isdirectory($HOME.'/.vim/files') && !isdirectory($HOME.'/.vim/files/backup') && exists('*mkdir')
-  call mkdir($HOME.'/.vim/files/backup')
-endif
-if isdirectory($HOME.'/.vim/files') && !isdirectory($HOME.'/.vim/files/swap') && exists('*mkdir')
-  call mkdir($HOME.'/.vim/files/swap')
-endif
-if isdirectory($HOME.'/.vim/files') && !isdirectory($HOME.'/.vim/files/undo') && exists('*mkdir')
-  call mkdir($HOME.'/.vim/files/undo')
-endif
-if isdirectory($HOME.'/.vim/files') && !isdirectory($HOME.'/.vim/files/info') && exists('*mkdir')
-  call mkdir($HOME.'/.vim/files/info')
-endif
-set backupdir   =$HOME/.vim/files/backup/
-set backupext   =-vimbackup
-set backupskip  =
-set directory   =$HOME/.vim/files/swap//
-set undodir     =$HOME/.vim/files/undo/
-if has('nvim')
-    set viminfo     ='1000,n$HOME/.vim/files/info/nviminfo
-else
-    set viminfo     ='1000,n$HOME/.vim/files/info/viminfo
-endif
+for dir in ['backup', 'swap', 'undo', 'info', 'view']
+  call mkdir($HOME . '/.vim/files/' . dir, 'p')
+endfor
+
+set backupdir=$HOME/.vim/files/backup//
+set backupext=-vimbackup
+set backupskip=
+set directory=$HOME/.vim/files/swap//
+set undodir=$HOME/.vim/files/undo//
+set viewdir=$HOME/.vim/files/view//
+
+set viminfo='1000,n$HOME/.vim/files/info/viminfo
 
 " Show non-printable characters.
 set list
@@ -85,9 +83,6 @@ inoremap <Down> <NOP>
 inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 
-" Make Y behave like C and D.
-nnoremap Y y$
-
 " Keep it centered.
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -107,7 +102,7 @@ nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 nnoremap <leader>b :confirm buffer <C-z>
 nnoremap <leader>e :confirm edit <C-z>
 
-" Function keys are unmapped by default.
+" Function key mappings.
 nnoremap <F1> :FormatCode<CR>
 nnoremap <F2> :silent execute 'w !xclip -selection clipboard' <Bar> redraw!<CR>
 nnoremap <F3> :let @+ = expand('%:t') \| let @* = @+<CR>
@@ -125,6 +120,9 @@ vnoremap <leader>p "+p
 
 " Saves and stages the current buffer (equivalent to git add %)
 nnoremap <leader>ga :Gwrite<CR>
+
+" Toggle LSP inlay hints.
+nnoremap <leader>ih :CocCommand document.toggleInlayHint<CR>
 
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
@@ -146,17 +144,15 @@ call glaive#Install()
 " Load coc configuration.
 runtime conquer_of_completion.vim
 
-" Terminal fix 24-bit.
-let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
-let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
-
-" set term=xterm-256color
 set termguicolors
 let g:sonokai_style = 'andromeda'
 let g:sonokai_diagnostic_line_highlight = 1
 colorscheme sonokai
 
-autocmd VimEnter * echo "Hola Vicfred :)"
+augroup greeting
+  autocmd!
+  autocmd VimEnter * echo "Hola Vicfred :)"
+augroup END
 
 let g:hardtime_default_on = 1
 
