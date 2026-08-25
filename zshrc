@@ -143,3 +143,4 @@ precmd_functions+=(print_quote_uniform)
 source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
 
 alias t='todo.sh -d ~/.todo.cfg'
+alias gdbtest='gdb -q -x test.gdb'
