@@ -61,20 +61,32 @@ ducks() {
 }
 
 # change `make` default behaviour for C++.
-export CXX="clang++"
-# — C++ compiler flags —
-#   standard, optimizations, debug info, warnings, sanitizers, analysis
+# — C++ compiler and debugging configuration —
+#   standard, debug info, warnings, sanitizers, STL checks
+# CXX=clang++                   Use Clang as the C++ compiler
 # -std=c++23                    Use the C++23 standard
-# -O0                           Disable optimizations (for easier stepping)
-# -ggdb3                        Emit full GDB debug info (including macro defs)
-# -Wall -Wextra                 Enable most warning checks
-# -Wpedantic                    Enforce strict ISO C++ compliance
-# -Wconversion                  Warn on implicit conversions that may alter values
-# -Wsign-conversion             Warn on signed/unsigned conversions that may change sign
-# -fno-omit-frame-pointer       Keep frame pointers for accurate backtraces
-# -fno-inline                   Disable function inlining to preserve call stacks
-# -fsanitize=address,undefined  Catch memory- and undefined-behavior bugs
-# -fsanitize=leak               Detect memory leaks on program exit
+# -O0                           Disable optimizations for easier debugging
+# -ggdb3                        Emit full GDB debug info, including macro definitions
+# -Wall -Wextra                 Enable common and additional warning checks
+# -Wpedantic                    Warn about non-standard C++ extensions
+# -Wconversion                  Warn about implicit conversions that may alter values
+# -Wno-sign-conversion          Suppress noisy signed/unsigned conversion warnings
+# -Wshadow                      Warn when a declaration shadows another variable
+# -Wswitch-enum                 Warn when enum values are omitted from a switch
+# -Wimplicit-fallthrough        Warn about unintended switch fallthrough
+# -Wold-style-cast              Warn about C-style casts
+# -fno-omit-frame-pointer       Keep frame pointers for useful backtraces
+# -fsanitize=address            Detect invalid memory accesses
+# -fsanitize=undefined          Detect undefined behavior
+# -fsanitize=integer            Detect suspicious integer operations and conversions
+# -fno-sanitize=unsigned-integer-overflow
+#                               Ignore defined unsigned integer wraparound
+# -fno-sanitize-recover=all     Abort immediately when a sanitizer detects an error
+# -D_GLIBCXX_DEBUG              Enable libstdc++ iterator, bounds, and range checks
+# ASAN_OPTIONS=detect_leaks=0   Disable leak detection, especially for GDB compatibility
+# UBSAN_OPTIONS=print_stacktrace=1
+#                               Print a stack trace for UBSan errors
+export CXX="clang++"
 export CXXFLAGS="\
 -std=c++23 \
 -O0 \
@@ -89,11 +101,12 @@ export CXXFLAGS="\
 -Wimplicit-fallthrough \
 -Wold-style-cast \
 -fno-omit-frame-pointer \
--fsanitize=address,undefined,bounds,integer \
+-fsanitize=address,undefined,integer \
 -fno-sanitize=unsigned-integer-overflow \
--fno-sanitize-recover=undefined \
--D_GLIBCXX_ASSERTIONS \
+-fno-sanitize-recover=all \
 -D_GLIBCXX_DEBUG"
+export ASAN_OPTIONS="detect_leaks=0"
+export UBSAN_OPTIONS="print_stacktrace=1"
 #export CPPFLAGS="-I/path/to/include"
 
 # Add local installed binaries to the path.
