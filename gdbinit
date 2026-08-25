@@ -11,7 +11,7 @@ set print array on
 set print array-indexes on
 set print object on
 set print static-members off
-set print elements 200
+set print elements 20
 set print frame-arguments scalars
 
 # Breakpoints.
