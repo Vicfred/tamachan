@@ -36,7 +36,6 @@ augroup cpp_style
 augroup END
 
 " Change leader key to space.
-let mapleader = " "
 nnoremap <Space> <Nop>
 
 " Put all temporary files under the same directory.

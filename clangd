@@ -37,7 +37,7 @@ Diagnostics:
   ClangTidy:
     Add:
       - bugprone-*
-      - performance-*
+      #- performance-*
     FastCheckFilter: Strict
 
 Index:
